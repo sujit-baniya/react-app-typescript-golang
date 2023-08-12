@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  app:
+    container_name: test-app
+    build:
+      context: .
+    ports:
+      - 8080:80

@@ -1,0 +1,48 @@
+{
+  "name": "react-app-typescript-golang",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^20.4.10",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "concurrently": "^8.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.1.6",
+    "watch": "^1.0.2",
+    "web-vitals": "^3.4.0"
+  },
+  "scripts": {
+    "start": "concurrently \"pnpm watch:ts\" \"pnpm watch:wasm\"",
+    "build": "pnpm build:wasm && pnpm build:ts",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "watch:ts": "react-scripts start",
+    "watch:wasm": "watch \"pnpm build:wasm\" ./wasm",
+    "build:ts": "react-scripts build",
+    "build:wasm": "cd wasm && GOOS=js GOARCH=wasm go build -ldflags=\"-w -s\" -o ../public/main.wasm && cd .. && echo \"\\033[0;32mcompiled wasm successfully!\\033[0m\""
+  },
+  "overrides": {
+    "typescript": "^5.1.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
